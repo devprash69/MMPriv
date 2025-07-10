@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vediocc – Creative Agency</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:900,700,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F1F5E8;
+      --accent: #FF2B2B;
+      --text-dark: #111;
+      --text-light: #fff;
+      --headline: 'Montserrat', Arial, sans-serif;
+      --body: 'Montserrat', Arial, sans-serif;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text-dark);
+      font-family: var(--body);
+      box-sizing: border-box;
+    }
+    body {
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    /* Background grid lines */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        to right,
+        transparent,
+        transparent 7.5%,
+        rgba(0,0,0,0.04) 7.5%,
+        rgba(0,0,0,0.04) 8.5%,
+        transparent 8.5%,
+        transparent 16%
+      );
+    }
+    main {
+      position: relative;
+      z-index: 1;
+    }
+    /* Hero Section */
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding-top: 3rem;
+    }
+    .hero-logo {
+      font-family: var(--headline);
+      font-weight: 900;
+      font-size: 5rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .hero-sub {
+      font-size: 1.2rem;
+      color: var(--text-dark);
+      margin-bottom: 2rem;
+    }
+    .hero-services {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .hero-service {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      background: none;
+      border: none;
+      margin: 0 1rem;
+    }
+    .hero-btn {
+      background: var(--accent);
+      color: var(--text-light);
+      border: none;
+      border-radius: 2rem;
+      padding: 0.8rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      z-index: 2;
+    }
+    .hero-btn:hover {
+      background: #e01a1a;
+    }
+    /* About Section */
+    .about {
+      background: #222;
+      color: var(--text-light);
+      padding: 4rem 0 2.5rem 0;
+      text-align: center;
+    }
+    .about-title {
+      font-family: var(--headline);
+      font-weight: 900;
+      font-size: 2.2rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+      border-bottom: 3px solid var(--accent);
+      display: inline-block;
+      padding-bottom: 0.2rem;
+    }
+    .about-text {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .about-text .highlight {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    /* Services Section */
+    .services {
+      padding: 4rem 0 2rem 0;
+      text-align: center;
+    }
+    .services-title {
+      font-family: var(--headline);
+      font-weight: 900;
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+      padding-bottom: 0.2rem;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .service-block {
+      background: #fff;
+      border-radius: 1.2rem;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 260px;
+      position: relative;
+    }
+    .service-img {
+      width: 120px;
+      height: 80px;
+      background: #eee;
+      border-radius: 0.7rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #bbb;
+    }
+    .service-title {
+      font-family: var(--headline);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-bottom: 0.7rem;
+      text-transform: lowercase;
+    }
+    .service-desc {
+      font-size: 1rem;
+      color: var(--text-dark);
+      max-width: 260px;
+    }
+    /* Portfolio Section */
+    .portfolio {
+      padding: 4rem 0 2rem 0;
+      background: var(--bg);
+      text-align: center;
+    }
+    .portfolio-title {
+      font-family: var(--headline);
+      font-weight: 900;
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+      padding-bottom: 0.2rem;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .portfolio-item {
+      background: #fff;
+      border-radius: 1.2rem;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .portfolio-item:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+    }
+    .portfolio-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      background: #eee;
+      display: block;
+    }
+    .portfolio-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      font-size: 1rem;
+      padding: 0.7rem 1rem;
+      opacity: 0;
+      transition: opacity 0.2s;
+      text-align: left;
+    }
+    .portfolio-item:hover .portfolio-caption {
+      opacity: 1;
+    }
+    /* CTA Section */
+    .cta {
+      padding: 3rem 0 2rem 0;
+      background: var(--bg);
+      text-align: center;
+    }
+    .cta-text {
+      font-family: var(--headline);
+      font-weight: 900;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+      color: var(--text-dark);
+    }
+    .cta-btn {
+      background: var(--accent);
+      color: var(--text-light);
+      border: none;
+      border-radius: 2rem;
+      padding: 1rem 2.5rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+      position: relative;
+    }
+    .cta-btn:hover {
+      background: #e01a1a;
+    }
+    .cta-note {
+      font-size: 1rem;
+      color: var(--accent);
+      font-style: italic;
+      margin-left: 0.7rem;
+      position: absolute;
+      right: -4.5rem;
+      top: 1.7rem;
+    }
+    /* Contact Section */
+    .contact {
+      background: #222;
+      color: var(--text-light);
+      padding: 3rem 0 2rem 0;
+      text-align: center;
+    }
+    .contact-title {
+      font-family: var(--headline);
+      font-weight: 900;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+      padding-bottom: 0.2rem;
+    }
+    .contact-form {
+      max-width: 400px;
+      margin: 0 auto 2rem auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      padding: 0.8rem 1rem;
+      border-radius: 0.7rem;
+      border: none;
+      font-size: 1rem;
+      font-family: var(--body);
+      margin-bottom: 0.2rem;
+    }
+    .contact-form textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+    .contact-form button {
+      background: var(--accent);
+      color: var(--text-light);
+      border: none;
+      border-radius: 2rem;
+      padding: 0.8rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .contact-form button:hover {
+      background: #e01a1a;
+    }
+    .contact-links {
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .contact-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+      transition: text-decoration 0.2s;
+    }
+    .contact-link:hover {
+      text-decoration: underline;
+    }
+    /* Footer */
+    .footer {
+      background: #222;
+      color: #bbb;
+      padding: 1.2rem 0 0.7rem 0;
+      text-align: center;
+      font-size: 0.95rem;
+      border-top: 1px solid #333;
+    }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      max-width: 900px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-left {
+      text-align: left;
+    }
+    .footer-right {
+      text-align: right;
+    }
+    @media (max-width: 900px) {
+      .services-grid, .portfolio-grid, .footer-content {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .services-grid, .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+    @media (max-width: 600px) {
+      .hero-logo {
+        font-size: 2.7rem;
+      }
+      .services {
+        padding: 2.5rem 0 1rem 0;
+      }
+      .portfolio {
+        padding: 2.5rem 0 1rem 0;
+      }
+      .about {
+        padding: 2.5rem 0 1.2rem 0;
+      }
+      .cta {
+        padding: 2rem 0 1rem 0;
+      }
+      .contact {
+        padding: 2rem 0 1rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <button class="hero-btn" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">let's talk</button>
+      <div class="hero-services">
+        <span class="hero-service">branding</span>
+        <span class="hero-service">web-design</span>
+        <span class="hero-service">marketing</span>
+        <span class="hero-service">content lab</span>
+      </div>
+      <div class="hero-logo">VEDIOCC</div>
+      <div class="hero-sub">we build brands people follow, buy from, and talk about</div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="about-title">Who are we?</div>
+      <div class="about-text">
+        VEDIOCC is a <span class="highlight">content-first</span> brand studio. We craft reels, brands, and websites that don't just look good – they <span class="highlight">perform</span>. No fluff. No filler. Just strategy, execution, and <span class="highlight">content that wins</span> the scroll war.
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+      <div class="services-title">What we do</div>
+      <div class="services-grid">
+        <div class="service-block">
+          <div class="service-img">[img]</div>
+          <div class="service-title">branding</div>
+          <div class="service-desc">We build scroll-stopping brand identities that look sharp, speak loud, and sell fast.</div>
+        </div>
+        <div class="service-block">
+          <div class="service-img">[img]</div>
+          <div class="service-title">marketing</div>
+          <div class="service-desc">We turn clicks into conversions with marketing that's built to scale.</div>
+        </div>
+        <div class="service-block">
+          <div class="service-img">[img]</div>
+          <div class="service-title">web design</div>
+          <div class="service-desc">We design clean, high-converting websites that load fast.</div>
+        </div>
+        <div class="service-block">
+          <div class="service-img">[img]</div>
+          <div class="service-title">content-gen</div>
+          <div class="service-desc">We script and deliver short-form content built to hook, hold, and convert.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+      <div class="portfolio-title">Portfolio</div>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <div class="portfolio-img">[img]</div>
+          <div class="portfolio-caption">Website for Soel</div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-img">[img]</div>
+          <div class="portfolio-caption">Campaign for Sharmi Clinic</div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-img">[img]</div>
+          <div class="portfolio-caption">Branding for Syro Art Studio</div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-img">[img]</div>
+          <div class="portfolio-caption">Content for XYZ Startup</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="cta">
+      <div class="cta-text">Like what you see?</div>
+      <button class="cta-btn" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+        book a consultation
+        <span class="cta-note">it's free</span>
+      </button>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <div class="contact-title">Contact</div>
+      <form class="contact-form">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <select required>
+          <option value="">Project type</option>
+          <option value="branding">Branding</option>
+          <option value="marketing">Marketing</option>
+          <option value="web">Web Design</option>
+          <option value="content">Content Gen</option>
+        </select>
+        <textarea placeholder="Message" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+      <div class="contact-links">
+        <a class="contact-link" href="#" target="_blank">Instagram</a>
+        <a class="contact-link" href="#" target="_blank">Threads</a>
+        <a class="contact-link" href="mailto:hello@vediocc.in">Mail</a>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-left">
+        VEDIOCC<br>
+        We build brands people follow,<br>buy from, and talk about.<br><br>
+        <span style="font-size:0.9em;">www.vediocc.in<br>&copy;2024</span>
+      </div>
+      <div class="footer-right">
+        CONNECT<br>
+        <a class="contact-link" href="#" target="_blank">INSTAGRAM</a> ·
+        <a class="contact-link" href="#" target="_blank">THREADS</a> ·
+        <a class="contact-link" href="mailto:hello@vediocc.in">MAIL</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html> 
